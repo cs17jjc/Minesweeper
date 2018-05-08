@@ -27,12 +27,26 @@ void draw()
   {
     for(int y = 0; y < GameHeight; y++)
     {
-      if(MS.MineField[x][y] == true)
-      {
+        if(MS.ShowField[x][y] == true)
+        {
+          if(MS.CountField[x][y] != 0)
+          {
+           fill(200,0,0);
+           text(MS.CountField[x][y],x*GridSize + (GridSize/2),(y+1)*GridSize);
+          }
+           if(MS.MineField[x][y] == true)
+           {
         fill(150);
         rect(x*GridSize,y*GridSize,GridSize,GridSize);
       }
+        }
     }
   }
-  
 }
+
+  void mousePressed() 
+  {
+    int x = floor(mouseX / GridSize);
+    int y = floor(mouseY / GridSize);
+    MS.Reveal(x,y);
+  }
