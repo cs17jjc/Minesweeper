@@ -24,10 +24,10 @@ public class Game
      CountField = new int[Width][Height];
      ShowField = new boolean[Width][Height];
      
-     for(int i = 0; i < Difficulty;i++)
+     for(int i = 0; i < Difficulty;i++)//Difficulty is ammount of bombs
      {
       boolean Picked = false;
-      while(Picked == false)
+      while(Picked == false)//While a new location hasn't been picked as RNG could pick same location
       {
        int x = (int)random(Width);
        int y = (int)random(Height);
@@ -48,7 +48,7 @@ public class Game
                int YPos = y + Yoff;
                if(XPos >= 0 && XPos < Width && YPos >= 0 && YPos < Height)
                {
-                CountField[XPos][YPos] += 1;
+                CountField[XPos][YPos] += 1;//Add 1 to the count of surounding cells
                }
              }
            }
@@ -78,7 +78,6 @@ public class Game
      RecursiveReveal(x,y);
    }
    
-   println(ShownCount);
    if(ShownCount == (Width * Height) - Diff)
    {
     Win = true;

@@ -1,9 +1,9 @@
 
 Game MS;
-int GridSize = 40;
-int GameWidth = 10;
-int GameHeight = 10;
-int Difficulty = 3;
+int GridSize = 20;
+int GameWidth = 20;
+int GameHeight = 20;
+int Difficulty = 55;
 
 void setup()
 {
@@ -56,10 +56,12 @@ void draw()
      fill(0,0,255);
      if(MS.Win)
      {
+       background(255);
        text("You Won!",width/2,height/2);
      }
      else
      {
+       background(255);
        text("Game Over",width/2,height/2);
      }
      
