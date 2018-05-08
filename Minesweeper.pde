@@ -1,9 +1,9 @@
 
 Game MS;
 int GridSize = 20;
-int GameWidth = 100;
-int GameHeight = 100;
-int Difficulty = 1000;
+int GameWidth = 10;
+int GameHeight = 10;
+int Difficulty = 10;
 
 void setup()
 {
