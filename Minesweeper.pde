@@ -1,14 +1,16 @@
 
 Game MS;
 int GridSize = 20;
-int GameWidth = 10;
-int GameHeight = 10;
-int Difficulty = 10;
+int GameWidth = 100;
+int GameHeight = 100;
+int Difficulty = 1000;
 
 void setup()
 {
   MS = new Game(GameWidth,GameHeight,Difficulty);
   size(GameWidth * GridSize,GameHeight * GridSize);
+  textSize(GridSize);
+  textAlign(LEFT, TOP);
 }
 
 void draw()
@@ -32,14 +34,19 @@ void draw()
           if(MS.CountField[x][y] != 0)
           {
            fill(200,0,0);
-           text(MS.CountField[x][y],x*GridSize + (GridSize/2),(y+1)*GridSize);
+           text(MS.CountField[x][y],x*GridSize,(y)*GridSize);
           }
-           if(MS.MineField[x][y] == true)
-           {
-        fill(150);
-        rect(x*GridSize,y*GridSize,GridSize,GridSize);
-      }
-        }
+          else
+          {
+            fill(100,0,200);
+            rect(x*GridSize,y*GridSize,GridSize,GridSize);
+          }
+          if(MS.MineField[x][y] == true)
+          {
+            fill(255,0,0);
+            rect(x*GridSize,y*GridSize,GridSize,GridSize);
+          }
+       }
     }
   }
 }

@@ -7,8 +7,13 @@ public class Game
   public int[][] CountField;
   public boolean[][] ShowField;
   
+  int Width;
+  int Height;
+  
   Game(int Width, int Height, int Difficulty)
   {
+     this.Width = Width;
+     this.Height = Height;
      MineField = new boolean[Width][Height];
      CountField = new int[Width][Height];
      ShowField = new boolean[Width][Height];
@@ -50,10 +55,47 @@ public class Game
   
   public void Reveal(int x,int y)
   {
-   if(ShowField[x][y] == true) return; 
-    
-    
+   if(ShowField[x][y] == true) return;
+   if(MineField[x][y] == true)
+   {
+     ShowField[x][y] = true;
+     return;
+   }
+   if(CountField[x][y] != 0)
+   {
+     ShowField[x][y] = true;
+     return;
+   }
+   else
+   {
+     RecursiveReveal(x,y);
+   }
   }
+  
+  public void RecursiveReveal(int x,int y)
+  {
+    ShowField[x][y] = true;
+    for(int Xoff = -1; Xoff <2; Xoff+= 1)
+         {
+           for(int Yoff = -1; Yoff <2; Yoff+= 1)
+           {
+             if(Xoff != 0 || Yoff != 0)
+             {
+               int XPos = x + Xoff;
+               int YPos = y + Yoff;
+               if(XPos >= 0 && XPos < Width && YPos >= 0 && YPos < Height)
+               {
+                 if(ShowField[XPos][YPos] == false)
+                 {
+                   if(CountField[XPos][YPos] != 0) ShowField[XPos][YPos] = true;
+                   if(MineField[XPos][YPos] != true && CountField[XPos][YPos] == 0) RecursiveReveal(XPos,YPos);
+                 }
+               }
+             }
+           }
+         }
+  }
+  
 }
 
 
